@@ -109,4 +109,18 @@ public class ConfigDb {
             JOptionPane.showMessageDialog(null, "Maaf terjadi kesalahan pada bagian method hapusData : \n["+e.toString()+"]");
         }
     }
+    
+    public boolean duplikasiData(String tabel, String Key, String nilai){
+        boolean ada = false;
+        try{
+            Statement st = ConfigDb.this.koneksi.createStatement();
+            ResultSet rs = st.executeQuery("SELECT*FROM  "+tabel+"  WHERE"+Key+"="+nilai);
+            if(rs.next()){
+                ada = true;
+            }else {ada = false;}
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Maaf terjadi kesalahan pada bagian method duplikasiData : \n["+e.toString()+"]");
+        }
+        return ada;
+    }
 }
