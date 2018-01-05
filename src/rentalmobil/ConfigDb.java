@@ -62,4 +62,17 @@ public class ConfigDb {
                         }
                 return data;
     }
+    
+    public void aturLebarKolom(JTable tabel, int baris[]){
+        try {
+            int getBaris[]=baris;
+            int JumlahBaris=getBaris.length;
+            tabel.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_OFF);
+                for (int i=0; i<JumlahBaris-1; i++){
+                    tabel.getColumnModel().getColumn(i).setPreferredWidth(getBaris[i]);
+                }
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Maaf terjadi kesalahan pada bagian method aturLebarKolom : \n["+e.toString()+"]");
+        }
+    }
 }
