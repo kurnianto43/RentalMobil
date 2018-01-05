@@ -86,4 +86,16 @@ public class ConfigDb {
             JOptionPane.showMessageDialog(null, "Maaf terjadi kesalahan pada bagian method simpanData: \n["+e.toString()+"]"); 
         }
     }
+    
+    public void ubahData(String SQL){
+        try{
+            Statement st =ConfigDb.this.koneksi.createStatement();
+            st.execute(SQL);
+            st.close();
+            JOptionPane.showMessageDialog(null, "Data berhasil diubah");
+            
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Maaf terjadi kesalahan pada bagian method ubahData :\n["+e.toString()+"]");
+        }
+    }
 }
