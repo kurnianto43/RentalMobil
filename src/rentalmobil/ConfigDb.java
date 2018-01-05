@@ -123,4 +123,15 @@ public class ConfigDb {
         }
         return ada;
     }
+    
+    public void cariData(String Nopol[], String Cari, JTable Tabel){
+        try{
+            Statement st = ConfigDb.this.koneksi.createStatement();
+            String title[] = Nopol;
+            int jum = title.length;
+            Tabel.setModel(new DefaultTableModel(isiTabel(Cari,jum),title));
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Maaf terjadi kesalahan pada bagian method cariData : \n["+e.toString()+"]");
+        }
+    }
 }
