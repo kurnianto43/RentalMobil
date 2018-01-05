@@ -40,4 +40,26 @@ public class ConfigDb {
             JOptionPane.showMessageDialog(null,"Maaf terjadi kesalahan pada bagian : \n["+e.toString()+"]");
         }
     }
+    
+    public Object[][] isiTabel(String SQL, int jumlah){
+        Object[][] data=null;
+        try{
+            Statement st=ConfigDb.this.koneksi.createStatement();
+            ResultSet rs=st.executeQuery(SQL);
+            rs.last();
+            int baris=rs.getRow();
+            rs.beforeFirst();
+            int j=0;
+            data=new Object[baris][jumlah];
+                while(rs.next()){
+                    for (int i=0; i<jumlah;i++){
+                        data[j][i]=rs.getString(i+1);
+                    }
+                    j++;
+                }
+        }catch (Exception e){
+                        JOptionPane.showMessageDialog(null, "Maaf terjadi kesalahan pada bagian method isiTabel :\n["+e.toString()+"]");
+                        }
+                return data;
+    }
 }
