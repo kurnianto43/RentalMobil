@@ -151,4 +151,20 @@ public class ConfigDb {
             JOptionPane.showMessageDialog(null, "Maaf terjadi kesalahan pada bagian method tampilLaporan : \n["+e.toString()+"]");
         }
     }
+    
+    public int jumlahRecord(String SQL){
+        int hasil = 0;
+        int i = 0;
+        try{
+            Statement st = ConfigDb.this.koneksi.createStatement();
+            ResultSet rs = st.executeQuery(SQL);
+            while (rs.next()){
+                i++;
+            }
+            hasil = i;
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Maaf terjadi kesalahan pada bagian method jumlahRecord : \n["+e.toString()+"]");
+        }
+        return hasil;
+    }
 }
