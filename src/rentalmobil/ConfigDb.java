@@ -134,4 +134,21 @@ public class ConfigDb {
             JOptionPane.showMessageDialog(null, "Maaf terjadi kesalahan pada bagian method cariData : \n["+e.toString()+"]");
         }
     }
+    
+    public void tampilLaporan(String laporanFile, String SQL){
+        try{
+            File file = new File(laporanFile);
+            JasperDesign jasDes = JRXmlLoader.load(file);
+            
+            JRDesignQuery sqlQuery = new JRDesignQuery();
+            sqlQuery.setText(SQL);
+            jasDes.setQuery(sqlQuery);
+            
+            JasperReport JR = JasperCompileManager.compileReport(jasDes);
+            JasperPrint JP = JasperFillManager.fillReport(JR, null, ConfigDb.this.koneksi);
+            JasperViewer.viewReport(JP);
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Maaf terjadi kesalahan pada bagian method tampilLaporan : \n["+e.toString()+"]");
+        }
+    }
 }
