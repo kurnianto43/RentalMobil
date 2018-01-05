@@ -75,4 +75,15 @@ public class ConfigDb {
             JOptionPane.showMessageDialog(null, "Maaf terjadi kesalahan pada bagian method aturLebarKolom : \n["+e.toString()+"]");
         }
     }
+    
+    public void simpanData(String SQL){
+        try{
+            Statement st=ConfigDb.this.koneksi.createStatement();
+            st.execute(SQL);
+            st.close();
+            JOptionPane.showMessageDialog(null, "Data berhasil disimpan");    
+        }catch (Exception e){
+            JOptionPane.showMessageDialog(null, "Maaf terjadi kesalahan pada bagian method simpanData: \n["+e.toString()+"]"); 
+        }
+    }
 }
