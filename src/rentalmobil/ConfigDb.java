@@ -63,6 +63,16 @@ public class ConfigDb {
                 return data;
     }
     
+    public void tampilTabel(String Judul[], String SQL, JTable Tabel){
+        try{
+            String title[]=Judul;
+            int jum = title.length;
+            Tabel.setModel(new DefaultTableModel(isiTabel(SQL, jum), title));
+            }catch (Exception e){
+                JOptionPane.showMessageDialog(null, "Maaf terjadi kesalahan pada bagian method tampilTable :\n["+e.toString()+"]");
+        }
+    }
+    
     public void aturLebarKolom(JTable tabel, int baris[]){
         try {
             int getBaris[]=baris;
@@ -167,4 +177,6 @@ public class ConfigDb {
         }
         return hasil;
     }
+    
+    
 }
